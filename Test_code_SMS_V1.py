@@ -202,12 +202,34 @@ try:
         #---------------------------------
         GPIO.output(38,GPIO.HIGH) #-------red off led batt
         GPIO.output(40,GPIO.LOW) #-------green on led batt
+        time.sleep(1)
+
+        GPIO.output(29,GPIO.LOW) #-------red off led inv
+        GPIO.output(31,GPIO.HIGH) #-------green on led inv
+
+        GPIO.output(11,GPIO.LOW) #-------red off led pv
+        GPIO.output(13,GPIO.HIGH) #-------green on led pv
+        #-------------------------------
+        GPIO.output(16,GPIO.LOW) #-------red off led CG
+        GPIO.output(18,GPIO.HIGH) #-------green on led CG
+        #-------------------------------
+        GPIO.output(29,GPIO.LOW) #-------red off led inv
+        GPIO.output(31,GPIO.HIGH) #-------green on led inv
+        #---------------------------------
+        GPIO.output(33,GPIO.LOW) #-------green on led network
+        #---------------------------------
+        GPIO.output(38,GPIO.LOW) #-------red off led batt
+        GPIO.output(40,GPIO.HIGH) #-------green on led batt
     
 except Exception:
     print '     err  Set GPIO Initial '
 
 def Level_Batt_LED():
     bus.write_byte_data(DEVICE,OLATB,0xC0)
+    time.sleep(1)
+    bus.write_byte_data(DEVICE,OLATB,0xFF)   #----off all green led level batt 
+    bus.write_byte_data(DEVICE,OLATA,0x70|0x00)
+    time.sleep(5)
     bus.write_byte_data(DEVICE,OLATA,0x70|0x01)
     
     """try:
