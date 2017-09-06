@@ -68,15 +68,7 @@ ser = serial.Serial(
     timeout=1
 )
 
-def check_Batt(PercentBATT):
-    GPIO.output(38,GPIO.HIGH) #-------red off led batt
-    GPIO.output(40,GPIO.LOW) #-------green on led batt
-    #GPIO.output(38,GPIO.LOW) #-------red on led batt
-    #GPIO.output(40,GPIO.HIGH) #-------green off led batt
-    GPIO.output(16,GPIO.HIGH) #-------red off led CG
-    GPIO.output(18,GPIO.LOW) #-------green on led CG
-    GPIO.output(29,GPIO.HIGH) #-------red off led inv
-    GPIO.output(31,GPIO.LOW) #-------green on led inv
+
 
 try:
     os.system('modprobe w1-gpio')
@@ -192,12 +184,32 @@ try:
     GPIO.setup(38,GPIO.OUT) #-------red led batt
     GPIO.setup(40,GPIO.OUT) #-------green led batt
 
+    def check_Batt():
+    
+        GPIO.output(29,GPIO.HIGH) #-------red off led inv
+        GPIO.output(31,GPIO.LOW) #-------green on led inv
+
+        GPIO.output(11,GPIO.HIGH) #-------red off led pv
+        GPIO.output(13,GPIO.LOW) #-------green on led pv
+        #-------------------------------
+        GPIO.output(16,GPIO.HIGH) #-------red off led CG
+        GPIO.output(18,GPIO.LOW) #-------green on led CG
+        #-------------------------------
+        GPIO.output(29,GPIO.HIGH) #-------red off led inv
+        GPIO.output(31,GPIO.LOW) #-------green on led inv
+        #---------------------------------
+        GPIO.output(33,GPIO.LOW) #-------green on led network
+        #---------------------------------
+        GPIO.output(38,GPIO.HIGH) #-------red off led batt
+        GPIO.output(40,GPIO.LOW) #-------green on led batt
+    
 except Exception:
     print '     err  Set GPIO Initial '
 
 def Level_Batt_LED():
     bus.write_byte_data(DEVICE,OLATB,0xC0)
-    bus.write_byte_data(DEVICE,OLATA,0x70|0x00)
+    bus.write_byte_data(DEVICE,OLATA,0x70|0x01)
+    
     """try:
         if percentBatt >= 100 :
             bus.write_byte_data(DEVICE,OLATB,0xC0)   #----on green led level batt....full,75,50,25,low,emtry (MSB|LSB)   
@@ -282,3 +294,4 @@ while True:
     #read_temp_ds18b20()
     Level_Batt_LED()
     read_time()
+    check_Batt()
