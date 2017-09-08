@@ -903,12 +903,12 @@ def getData(name,delay):
 
         Irr = rawIrr*(46600/1000)
         TempPV = (rawTempPV-0.69713)/(-0.00187)
-        TempPV = TempPV + 3.74 #cal to STL
+        #TempPV = TempPV + 3.74 #cal to STL
         TempPV = convert2dot(TempPV,2)
 
         TempAMB = (rawTempAMB-0.69713)/(-0.00187)
-        TempAMB = TempAMB*1.06
-        TempAMB = TempAMB +2.91  #Cal to STL
+        #TempAMB = TempAMB*1.06
+        #TempAMB = TempAMB +2.91  #Cal to STL
         TempAMB = convert2dot(TempAMB,2)
 
 # ---------------------- Voltage --------------------------------
@@ -944,7 +944,7 @@ def getData(name,delay):
             Ibatt1 = 0.0
         Ibatt1 = convert2dot(Ibatt1,2)
         if(Ibatt1 > 0):
-            Ibatt1 = (Ibatt1*0.9427)+0.2808
+            #Ibatt1 = (Ibatt1*0.9427)+0.2808
             Ibatt1 = convert2dot(Ibatt1,2)
 
         if(rawIbatt2 >= 2.522):
@@ -955,7 +955,7 @@ def getData(name,delay):
             Ibatt2 = 0.0
         Ibatt2 = convert2dot(Ibatt2,2)
         if(Ibatt2 > 0):
-            Ibatt2 = (Ibatt2*0.967)+0.2772
+            #Ibatt2 = (Ibatt2*0.967)+0.2772
             Ibatt2 = convert2dot(Ibatt2,2)
             
         if(rawIpv >= 2.532):
@@ -966,7 +966,7 @@ def getData(name,delay):
             Ipv = 0.0
         Ipv = convert2dot(Ipv,2)
         if(Ipv > 0):
-            Ipv = (Ipv*0.9577)+0.2442
+            #Ipv = (Ipv*0.9577)+0.2442
             Ipv = convert2dot(Ipv,2) 
 
         if(rawIcharger >= 2.522):
@@ -977,7 +977,7 @@ def getData(name,delay):
             Icharger = 0.0
         Icharger = convert2dot(Icharger,2)
         if(Icharger > 0):
-            Icharger = (Icharger*0.9671)+0.284
+            #Icharger = (Icharger*0.9671)+0.284
             Icharger = convert2dot(Icharger,2)
 
         if(rawIinverter >= 2.510):
@@ -988,7 +988,7 @@ def getData(name,delay):
             Iinverter = 0.0
         Iinverter = convert2dot(Iinverter,2)
         if(Iinverter > 0):
-            Iinverter = (Iinverter*0.8737)+0.5768
+            #Iinverter = (Iinverter*0.8737)+0.5768
             Iinverter = convert2dot(Iinverter,2)
 
 
@@ -1243,15 +1243,4 @@ while(1):
     insertDataBase("insertDataBase Funtion :" ,1)
     
     time.sleep(7)
-
-   
-    
-    
-
-
-
-    
-
-    
-        
-            
+  
