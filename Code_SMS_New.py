@@ -1125,7 +1125,7 @@ def read_time(name,delay):
         #real_time = str(read_time[0:2]+"/"+read_time[2:4]+"/"+read_time[4:6])
             real_time = str(read_time[0:2]+read_time[2:4]+read_time[4:6])
         #print "read_time",real_time
-     except Exception:
+    except Exception:
         print " error read time "
 
 def sendData(name,delay):
