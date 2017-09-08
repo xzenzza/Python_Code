@@ -1111,20 +1111,22 @@ def read_time(name,delay):
     uart_time1 = ser.readline()
     print uart_time1
     time.sleep(delay)
-    if(uart_time1[0] == 'T'):
+    try:
+        if(uart_time1[0] == 'T'):
         #print "OK Time"
-        uart_time = uart_time1[1:15]
+            uart_time = uart_time1[1:15]
         #print uart_time1[1:9]
-        read_date = str(uart_time1[1:9])
+            read_date = str(uart_time1[1:9])
         #real_date = str(read_date[0:4]+"/"+read_date[4:6]+"/"+read_date[6:9])
-        real_date = str(read_date[0:4]+read_date[4:6]+read_date[6:9])
+            real_date = str(read_date[0:4]+read_date[4:6]+read_date[6:9])
         #print "read_date",real_date
         #print uart_time1[9:15]
-        read_time = str(uart_time1[9:15])
+            read_time = str(uart_time1[9:15])
         #real_time = str(read_time[0:2]+"/"+read_time[2:4]+"/"+read_time[4:6])
-        real_time = str(read_time[0:2]+read_time[2:4]+read_time[4:6])
+            real_time = str(read_time[0:2]+read_time[2:4]+read_time[4:6])
         #print "read_time",real_time
-
+     except Exception:
+        print " error read time "
 
 def sendData(name,delay):
         
